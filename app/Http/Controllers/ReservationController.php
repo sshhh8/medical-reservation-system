@@ -9,19 +9,17 @@ use App\Repositories\Reservation\ReservationRepository;
 
 class ReservationController extends Controller
 {
-    protected $Reservation_repository;
-
     /**
      * Display a listing of the resource.
      */
-    public function __construct(ReservationRepository $Reservation_repository)
+    public function __construct(ReservationRepository $reservationRepository)
     {
-        $this->Reservation_repository = $Reservation_repository;
+        $this->Reservation = $reservationRepository;
     }
 
     public function index()
     {
-        $reservation = $this->Reservation_repository->getReservations();
+        $reservation = $this->Reservation->getReservations();
 
     return view('index', compact('reservation'));
     }
