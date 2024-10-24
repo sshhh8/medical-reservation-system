@@ -1,0 +1,43 @@
+body {
+    font-family: PolySans;
+
+}
+
+nav {
+    padding: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #CEE6C1;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+.main-content h1 {
+    font-size: 40px;
+}
+
+.main-content p {
+    font-size: 20px;
+}
+
+.btn {
+    background: #CEE6C1;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    outline: 0;
+    border: 0;
+    font-size: 25px;
+    border-radius: 10px;
+}
+
+footer {
+    color: #CEE6C1;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
