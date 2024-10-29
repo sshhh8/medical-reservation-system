@@ -2,9 +2,13 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/',  [ReservationController::class, 'index'])->name('index');
+Route::resource('/', ReservationController::class);
+Route::get('/create', [ReservationController::class, 'create'])->name('reservations.create');
+Route::get('/edit', [ReservationController::class, 'store'])->name('reservations.edit');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -21,7 +21,7 @@ class ReservationController extends Controller
     {
         $reservation = $this->Reservation->getReservations();
 
-    return view('index', compact('reservation'));
+        return view('reservations.index', compact('reservation'));
     }
 
     /**
@@ -29,7 +29,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+        return view('reservations.create');
     }
 
     /**
@@ -37,15 +37,7 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Reservation $reservation)
-    {
-        //
+        return view('reservations.edit');
     }
 
     /**

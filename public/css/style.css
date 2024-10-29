@@ -1,10 +1,10 @@
 body {
     font-family: PolySans;
-
+    text-align: center;
 }
 
 nav {
-    padding: 20px;
+    padding: 25px;
     text-align: center;
     text-transform: uppercase;
     color: #CEE6C1;
@@ -26,7 +26,6 @@ nav {
     background: #CEE6C1;
     color: #fff;
     padding: 10px;
-    text-align: center;
     outline: 0;
     border: 0;
     font-size: 25px;

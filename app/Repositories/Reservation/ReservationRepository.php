@@ -2,44 +2,39 @@
 
 namespace App\Repositories\Reservation;
 
-// models
 use App\Models\Reservation;
 
 class ReservationRepository
 {
-  // Reservationsテーブルをすべて取得
-  public function getReservations()
-  {
-    return Reservation::all();
-  }
+    public function getReservations()
+    {
+        return Reservation::all();
+    }
 
   // Reservationsテーブルに追加
-  public function createReservation($request)
-  {
-    // instance
-    $Reservation = new Reservation;
+//     public function createReservation($request)
+//     {
+//     // instance
+//         $Reservation =
 
-    // 値の代入
-    return $Reservation->fill($request->all())->save();
-  }
+//     // 値の代入
+//         return $Reservation->fill($request->all())->save();
+//     }
 
-  // Reservationsテーブルの要素を更新
-  public function updateReservation($id)
-  {
-    // 取得
-    $value = Reservation::find($id);
+//   // Reservationsテーブルの要素を更新
+//     public function updateReservation($id)
+//     {
+//     // 取得
+//         $value =
 
-    // ステータスを更新
-    return $value->fill(["status" => !$value->status])->save();
-  }
+//     // ステータスを更新
+//         return $value->fill(["status" => !$value->status])->save();
+//     }
 
-  // Reservationsテーブルの要素を削除
-  public function destroyReservation($id)
-  {
-    // 取得
-    $value = Reservation::find($id);
+//   // Reservationsテーブルの要素を削除
+//     public function destroyReservation($reservation)
+//     {
+//         return Reservation::find($reservation);
+//     }
 
-    // 取得して削除
-    return $value->delete();
-  }
 }
