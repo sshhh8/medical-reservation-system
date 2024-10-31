@@ -40,3 +40,21 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+.sidebar{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+}
+
+.side_btn {
+    background: #CEE6C1;
+    color: #fff;
+    padding: 10px;
+    outline: 0;
+    border: 0;
+    font-size: 25px;
+    border-radius: 10px;
+}

@@ -20,7 +20,7 @@ class ReservationCrudController extends CrudController
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
-     * 
+     *
      * @return void
      */
     public function setup()
@@ -28,17 +28,29 @@ class ReservationCrudController extends CrudController
         CRUD::setModel(\App\Models\Reservation::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/reservation');
         CRUD::setEntityNameStrings('reservation', 'reservations');
+
+        $this->crud->setTitle('予約一覧');
+        $this->crud->setHeading('予約一覧');
     }
 
     /**
      * Define what happens when the List operation is loaded.
-     * 
+     *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        $this->data['breadcrumbs'] = [
+            'ダッシュボード' => backpack_url('dashboard'),
+            '予約一覧' => backpack_url('reservation'),
+            '一覧' => false,
+        ];
+
+        CRUD::column('category_id')->label('診療科');
+        CRUD::column('user_id')->label('患者氏名');
+        CRUD::column('date')->label('日付');
+
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -48,13 +60,17 @@ class ReservationCrudController extends CrudController
 
     /**
      * Define what happens when the Create operation is loaded.
-     * 
+     *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
      */
     protected function setupCreateOperation()
     {
-        CRUD::setFromDb(); // set fields from db columns.
+        CRUD::field('category_id')->label('診療科');
+        CRUD::field('user_id')->label('患者氏名');
+        CRUD::field('date')->label('日付');
+
+        // CRUD::setFromDb(); // set fields from db columns.
 
         /**
          * Fields can be defined using the fluent syntax:
@@ -64,7 +80,7 @@ class ReservationCrudController extends CrudController
 
     /**
      * Define what happens when the Update operation is loaded.
-     * 
+     *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
      */

@@ -28,6 +28,9 @@ class AdminCrudController extends CrudController
         CRUD::setModel(\App\Models\Admin::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/admin');
         CRUD::setEntityNameStrings('admin', 'admins');
+
+        $this->crud->setTitle('職員一覧');
+        $this->crud->setHeading('職員一覧');
     }
 
     /**
@@ -38,7 +41,17 @@ class AdminCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        $this->data['breadcrumbs'] = [
+            'ダッシュボード' => backpack_url('dashboard'),
+            '職員一覧' => backpack_url('admin'),
+            '一覧' => false,
+        ];
+
+        CRUD::column('id')->label('職員番号');
+        CRUD::column('name')->label('氏名');
+        CRUD::column('category_id')->label('診療科');
+
+        // CRUD::setFromDb(); // set columns from db columns.
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -54,7 +67,17 @@ class AdminCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setFromDb(); // set fields from db columns.
+        $this->data['breadcrumbs'] = [
+            'ダッシュボード' => backpack_url('dashboard'),
+            '職員一覧' => backpack_url('admin'),
+            '一覧' => false,
+        ];
+
+        CRUD::field('id')->label('職員番号');
+        CRUD::field('name')->label('氏名');
+        CRUD::field('category_id')->label('診療科');
+
+        // CRUD::setFromDb(); // set fields from db columns.
 
         /**
          * Fields can be defined using the fluent syntax:
