@@ -31,6 +31,9 @@ class CategoryCrudController extends CrudController
 
         $this->crud->setTitle('科一覧');  // タイトル
         $this->crud->setHeading('科一覧'); // 見出し
+
+        CRUD::removeButton('create');
+
     }
 
     /**
@@ -50,12 +53,10 @@ class CategoryCrudController extends CrudController
         CRUD::column('id')->label('id');
         CRUD::column('name')->label('科');
 
-        // CRUD::setFromDb(); // set columns from db columns.
-
-        /**
-         * Columns can be defined using the fluent syntax:
-         * - CRUD::column('price')->type('number');
-         */
+        CRUD::removeButton('create');
+        CRUD::removeButton('update');
+        CRUD::removeButton('delete');
+        CRUD::removeButton('show');
     }
 
     /**
@@ -80,8 +81,8 @@ class CategoryCrudController extends CrudController
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
      */
-    // protected function setupUpdateOperation()
-    // {
-    //     $this->setupCreateOperation();
-    // }
+    protected function setupUpdateOperation()
+    {
+        $this->setupCreateOperation();
+    }
 }
