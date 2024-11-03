@@ -29,8 +29,10 @@ class ReservationCrudController extends CrudController
         CRUD::setRoute(config('backpack.base.route_prefix') . '/reservation');
         CRUD::setEntityNameStrings('reservation', 'reservations');
 
-        $this->crud->setTitle('予約一覧');
-        $this->crud->setHeading('予約一覧');
+        $this->crud->setTitle('予約管理');
+        $this->crud->setHeading('予約管理');
+        $this->crud->setSubheading('新規登録', 'create');
+        $this->crud->setSubheading('編集', 'edit');
     }
 
     /**
@@ -43,12 +45,22 @@ class ReservationCrudController extends CrudController
     {
         $this->data['breadcrumbs'] = [
             'ダッシュボード' => backpack_url('dashboard'),
-            '予約一覧' => backpack_url('reservation'),
+            '予約管理' => backpack_url('reservation'),
             '一覧' => false,
         ];
 
-        CRUD::column('category_id')->label('診療科');
-        CRUD::column('user_id')->label('患者氏名');
+        CRUD::column('category_id')
+            ->label('診療科')
+            ->type('select_grouped')
+            ->entity('categories')
+            ->attribute('name')
+            ->model("App\Models\Category");
+        CRUD::column('user_id')
+            ->label('患者氏名')
+            ->type('select_grouped')
+            ->entity('users')
+            ->attribute('name')
+            ->model("App\Models\User");
         CRUD::column('date')->label('日付');
 
 
@@ -66,8 +78,42 @@ class ReservationCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::field('category_id')->label('診療科');
-        CRUD::field('user_id')->label('患者氏名');
+        $this->data['breadcrumbs'] = [
+            'ダッシュボード' => backpack_url('dashboard'),
+            '予約管理' => backpack_url('admin'),
+            '新規登録' => false,
+        ];
+        $adminCategoryId = backpack_user()->category_id;
+
+        // カテゴリー選択フィールド
+        CRUD::addField([
+            'label'     => '診療科',
+            'type'      => 'select',
+            'name'      => 'category_id',
+            'entity'    => 'categories',
+            'attribute' => 'name',
+            'model'     => "App\Models\Category",
+            'options'   => (function ($query) use ($adminCategoryId) {
+                // Adminの所持するカテゴリーのみを表示
+                return $query->where('id', $adminCategoryId)->get();
+            }),
+        ]);
+
+        // ユーザー選択フィールド
+        CRUD::addField([
+            'label'     => '患者氏名',
+            'type'      => 'select',
+            'name'      => 'user_id',
+            'entity'    => 'users',
+            'attribute' => 'name',
+            'model'     => "App\Models\User",
+            'options'   => (function ($query) use ($adminCategoryId) {
+                // Adminのカテゴリーに関連するユーザーのみを取得
+                return $query->whereHas('categories', function ($q) use ($adminCategoryId) {
+                    $q->where('id', $adminCategoryId);
+                })->get();
+            }),
+        ]);
         CRUD::field('date')->label('日付');
 
         // CRUD::setFromDb(); // set fields from db columns.

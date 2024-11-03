@@ -6,9 +6,9 @@ use App\Models\Reservation;
 
 class ReservationRepository
 {
-    public function getReservations()
+    public function getReservations($user)
     {
-        return Reservation::all();
+        return Reservation::where('user_id', $user->id)->get();
     }
 
   // Reservationsテーブルに追加

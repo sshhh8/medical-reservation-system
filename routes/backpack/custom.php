@@ -16,10 +16,6 @@ Route::group([
     ),
     'namespace' => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
-    Route::middleware(['auth:admin'])->group(function () {
-        Route::crud('admin', 'AdminCrudController');
-        // 他の管理ルートもここに追加可能
-    });
     Route::crud('admin', 'AdminCrudController');
     Route::crud('user', 'UserCrudController');
     Route::crud('reservation', 'ReservationCrudController');

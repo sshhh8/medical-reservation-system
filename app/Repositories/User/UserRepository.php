@@ -3,12 +3,13 @@
 namespace App\Repositories\User;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserRepository
 {
     public function getUsers()
     {
-        return User::all();
+        return Auth::user();
     }
 
   // Usersテーブルに追加

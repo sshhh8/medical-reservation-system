@@ -11,4 +11,4 @@ Route::get('/dashboard', function () {
 
 
 require __DIR__.'/auth.php';
-require base_path('routes/reservation.php');
+require base_path('routes/route.php');
