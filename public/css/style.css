@@ -42,10 +42,6 @@ footer {
 }
 
 .sidebar{
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
     display: flex;
 }
 
@@ -57,4 +53,8 @@ footer {
     border: 0;
     font-size: 25px;
     border-radius: 10px;
+}
+
+.border col-7 {
+    text-align: center;
 }

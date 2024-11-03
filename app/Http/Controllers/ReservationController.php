@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Reservation\ReservationRepository;
@@ -19,7 +20,9 @@ class ReservationController extends Controller
 
     public function index()
     {
-        $reservation = $this->Reservation->getReservations();
+        $user = Auth::user();
+
+        $reservation = $this->Reservation->getReservations($user);
 
         return view('reservations.index', compact('reservation'));
     }

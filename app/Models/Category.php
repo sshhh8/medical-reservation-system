@@ -22,4 +22,9 @@ class Category extends Model
     {
         return $this->belongsToMany(User::class,'category_users');
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

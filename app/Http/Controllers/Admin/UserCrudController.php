@@ -29,8 +29,10 @@ class UserCrudController extends CrudController
         CRUD::setRoute(config('backpack.base.route_prefix') . '/user');
         CRUD::setEntityNameStrings('user', 'users');
 
-        $this->crud->setTitle('患者一覧');
-        $this->crud->setHeading('患者一覧');
+        $this->crud->setTitle('患者管理');
+        $this->crud->setHeading('患者管理');
+        $this->crud->setSubheading('新規登録', 'create');
+        $this->crud->setSubheading('編集', 'edit');
     }
 
     /**
@@ -43,20 +45,22 @@ class UserCrudController extends CrudController
     {
         $this->data['breadcrumbs'] = [
             'ダッシュボード' => backpack_url('dashboard'),
-            '患者一覧' => backpack_url('user'),
+            '患者管理' => backpack_url('user'),
             '一覧' => false,
         ];
 
         CRUD::column('id')->label('患者番号');
         CRUD::column('name')->label('患者氏名');
-        CRUD::column('category_id')->label('診療科');
+        CRUD::column('categories')
+            ->label('診療科')
+            ->type('select_multiple')
+            ->entity('categories')
+            ->attribute('name')
+            ->model("App\Models\Category");
         CRUD::column('email')->label('email');
-        CRUD::column('postal_cord')->label('郵便番号');
+        CRUD::column('postal_code')->label('郵便番号');
         CRUD::column('address')->label('住所');
         CRUD::column('phone')->label('電話番号');
-
-
-        // CRUD::setFromDb(); // set columns from db columns.
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -74,19 +78,26 @@ class UserCrudController extends CrudController
     {
         $this->data['breadcrumbs'] = [
             'ダッシュボード' => backpack_url('dashboard'),
-            '患者一覧' => backpack_url('user'),
-            '一覧' => false,
+            '患者管理' => backpack_url('user'),
+            '新規登録' => false,
         ];
 
-        CRUD::field('name')->label('患者氏名');
-        CRUD::field('category_id')->label('診療科');
-        CRUD::field('email')->label('email');
-        CRUD::field('postal_cord')->label('郵便番号');
-        CRUD::field('address')->label('住所');
-        CRUD::field('phone')->label('電話番号');
-        CRUD::field('password')->label('パスワード');
-
-        // CRUD::setFromDb(); // set fields from db columns.
+        CRUD::field('name')->label('患者氏名')->validationRules('required|string');;
+        CRUD::field('categories')
+            ->name('categories')
+            ->type('checklist')
+            ->label('診療科')
+            ->entity('categories')
+            ->attribute('name')
+            ->model("App\Models\Category")
+            ->pivot(true)
+            ->allows_multiple(true)
+            ->validationRules('required');
+        CRUD::field('email')->label('email')->validationRules('required|email');
+        CRUD::field('postal_code')->label('郵便番号')->validationRules('required|integer');
+        CRUD::field('address')->label('住所')->validationRules('required');
+        CRUD::field('phone')->label('電話番号')->validationRules('required|integer');
+        CRUD::field('password')->type('password')->label('パスワード')->validationRules('required');
 
         /**
          * Fields can be defined using the fluent syntax:
@@ -102,6 +113,23 @@ class UserCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
+        $this->data['breadcrumbs'] = [
+            'ダッシュボード' => backpack_url('dashboard'),
+            '患者管理' => backpack_url('user'),
+            '編集' => false,
+        ];
+
         $this->setupCreateOperation();
+    }
+
+    protected function autoSetupShowOperation()
+    {
+        $this->data['breadcrumbs'] = [
+            'ダッシュボード' => backpack_url('dashboard'),
+            '患者管理' => backpack_url('user'),
+            '詳細' => false,
+        ];
+
+        $this->setupListOperation();
     }
 }

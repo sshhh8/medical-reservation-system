@@ -29,10 +29,11 @@ class CategoryCrudController extends CrudController
         CRUD::setRoute(config('backpack.base.route_prefix') . '/category');
         CRUD::setEntityNameStrings('category', 'categories');
 
-        $this->crud->setTitle('科一覧');  // タイトル
-        $this->crud->setHeading('科一覧'); // 見出し
+        $this->crud->setTitle('診療科');
+        $this->crud->setHeading('診療科');
 
         CRUD::removeButton('create');
+        CRUD::orderBy('id');
 
     }
 
@@ -46,7 +47,7 @@ class CategoryCrudController extends CrudController
     {
         $this->data['breadcrumbs'] = [
             'ダッシュボード' => backpack_url('dashboard'),
-            '科一覧' => backpack_url('category'),
+            '診療科' => backpack_url('category'),
             '一覧' => false,
         ];
 
@@ -57,32 +58,5 @@ class CategoryCrudController extends CrudController
         CRUD::removeButton('update');
         CRUD::removeButton('delete');
         CRUD::removeButton('show');
-    }
-
-    /**
-     * Define what happens when the Create operation is loaded.
-     *
-     * @see https://backpackforlaravel.com/docs/crud-operation-create
-     * @return void
-     */
-    protected function setupCreateOperation()
-    {
-        CRUD::setFromDb(); // set fields from db columns.
-
-        /**
-         * Fields can be defined using the fluent syntax:
-         * - CRUD::field('price')->type('number');
-         */
-    }
-
-    /**
-     * Define what happens when the Update operation is loaded.
-     *
-     * @see https://backpackforlaravel.com/docs/crud-operation-update
-     * @return void
-     */
-    protected function setupUpdateOperation()
-    {
-        $this->setupCreateOperation();
     }
 }
