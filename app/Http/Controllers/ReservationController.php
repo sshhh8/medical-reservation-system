@@ -22,9 +22,9 @@ class ReservationController extends Controller
     {
         $user = Auth::user();
 
-        $reservation = $this->Reservation->getReservations($user);
+        $reservations = $this->Reservation->getReservations($user);
 
-        return view('reservations.index', compact('reservation'));
+        return view('reservations.index', compact('reservations', 'user'));
     }
 
     /**
