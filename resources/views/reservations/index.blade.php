@@ -1,27 +1,28 @@
-<x-layout>
-    <x-slot name="title">
-        Medical Reservation
-    </x-slot>
-    <div>
-        <h1>あなたの今後の予定</h1>
-        <div>
-            @if($reservation->isNotEmpty())
-                @foreach($reservations as $reservation)
-                    <article>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <p class="card-text">{{ $reservation->category_id }}</p>
-                            <p class="card-text">{{ $reservation->category_id }}</p>
-                        </div>
-                    </div>
-                    </article>
-                @endforeach
-            @else
-                <p>予約はありません。</p>
-            @endif
-        </div>
-    <!-- <button class="btn">予約追加</button> -->
+@extends('layouts.app')
+@section('content')
+    <h1>{{ $user->name }}様の今後の予定</h1>
+    @if($reservations->isNotEmpty())
+    <table>
+        <thead>
+            <tr>
+                <th>患者氏名</th>
+                <th>診療科</th>
+                <th>日付</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($reservations as $reservation)
+                <tr>
+                    <td>{{ $reservation->users->name ?? 'N/A' }}</td> <!-- リレーションを使用 -->
+                    <td>{{ $reservation->categories->name ?? 'N/A' }}</td> <!-- リレーションを使用 -->
+                    <td>{{ $reservation->date_formatted }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    @else
+        <p>予約はありません。</p>
+    @endif
     <button class="btn" onclick="location.href='{{ route('reservations.create') }}' ">予約追加</button>
     <button class="btn" onclick="location.href='{{ route('reservations.edit') }}' ">編集</button>
-    </div>
-</x-layout>
+@endsection

@@ -8,7 +8,7 @@ class ReservationRepository
 {
     public function getReservations($user)
     {
-        return Reservation::where('user_id', $user->id)->get();
+        return Reservation::where('user_id', $user->id)->with('users', 'categories')->get();
     }
 
   // Reservationsテーブルに追加
