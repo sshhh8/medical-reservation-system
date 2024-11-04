@@ -24,5 +24,5 @@
         <p>予約はありません。</p>
     @endif
     <button class="btn" onclick="location.href='{{ route('reservations.create') }}' ">予約追加</button>
-    <button class="btn" onclick="location.href='{{ route('reservations.edit') }}' ">編集</button>
+    <button class="btn" onclick="location.href='{{ route('reservations.edit', $reservation) }}' ">編集</button>
 @endsection

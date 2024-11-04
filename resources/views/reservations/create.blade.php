@@ -8,24 +8,19 @@
                 <br>
                 <h2>予約作成画面</h2>
                 <br>
-        <div class="row">
-            <div class="col-md">
-                <form>
-                    <div class="form-group">
-                        <label>患者番号：</label>
-                        <input type="text" class="form-control" value="000000" disabled>
-                    </div>
+
+                <form action="{{ route('reservations.store') }}" method="POST">
+                    @csrf
                     <div class="form-group">
                         <label>氏名：</label>
-                        <input type="text" class="form-control" placeholder="山田太郎">
+                        <input type="text" id="user_id" name="user_name" value="{{ $user->name }}" readonly><br><br>
                     </div>
                     <div class="form-group">
                         <label>診療科：</label>
-                        <select class="form-control">
-                            <option></option>
-                            <option></option>
-                            <option></option>
-                            <option></option>
+                        <select id="category_id" name="category_id" required>
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
@@ -33,8 +28,7 @@
                         <input type="date" value="2024-01-01" />
                     </div>
                 </form>
-            </div>
-        </div>
+
         <div class="row center-block text-center">
             <div class="col-1">
             </div>
@@ -44,6 +38,8 @@
             <div class="col-5">
                 <button type="button" class="btn btn-outline-primary btn-block">新規登録</button>
             </div>
+        </form>
+
         </div>
         <br>
     </div>

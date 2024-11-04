@@ -10,9 +10,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('/', ReservationController::class);
-    Route::get('/create', [ReservationController::class, 'create'])->name('reservations.create');
-    Route::get('/edit', [ReservationController::class, 'store'])->name('reservations.edit');
-    Route::get('/index', [ReservationController::class, 'index'])->name('reservations.index');
+    Route::resource('reservations', ReservationController::class);
+
+
+    Route::get('/create', [UserController::class, 'create'])->name('reservations.create');
+
 });
 
