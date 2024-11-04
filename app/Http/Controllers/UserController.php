@@ -29,7 +29,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $user = $this->User->getUsers();
+
+        $categories = $user->categories;
+
+        return view('reservations.create', compact('user', 'categories'));
     }
 
     /**

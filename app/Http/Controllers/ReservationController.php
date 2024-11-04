@@ -20,9 +20,9 @@ class ReservationController extends Controller
 
     public function index()
     {
-        $user = Auth::user();
+        $user_id = Auth::user()->id;
 
-        $reservations = $this->Reservation->getReservations($user);
+        $reservations = $this->Reservation->getReservations($user_id);
 
         return view('reservations.index', compact('reservations', 'user'));
     }
@@ -40,7 +40,9 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        return view('reservations.edit');
+        $this->Reservation->createReservation($request);
+
+        return redirect()->route('reservations.index')->with('flash_message', '予約が完了しました。');
     }
 
     /**

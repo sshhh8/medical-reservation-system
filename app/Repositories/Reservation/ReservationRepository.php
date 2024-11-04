@@ -6,20 +6,24 @@ use App\Models\Reservation;
 
 class ReservationRepository
 {
-    public function getReservations($user)
+    public function getReservations($user_id)
     {
-        return Reservation::where('user_id', $user->id)->with('users', 'categories')->get();
+        return Reservation::where('user_id', $user_id)->with('users', 'categories')->get();
     }
 
-  // Reservationsテーブルに追加
-//     public function createReservation($request)
-//     {
-//     // instance
-//         $Reservation =
+    public function createReservation($request)
+    {
+        $reservation = Reservation::create([
+            'category_id' => $request->input('category_id'),
+            'date' => $request->input('date'),
+            'user_id' => Auth::id(),
+            ]);
 
-//     // 値の代入
-//         return $Reservation->fill($request->all())->save();
-//     }
+          return $reservation;
+
+    // 値の代入
+        return $Reservation->fill($request->all())->save();
+    }
 
 //   // Reservationsテーブルの要素を更新
 //     public function updateReservation($id)
