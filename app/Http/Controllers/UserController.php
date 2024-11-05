@@ -21,7 +21,7 @@ class UserController extends Controller
     {
         $user = $this->User->getUsers();
 
-        return view('index', compact('user'));
+        return view('reservations.index', compact('user'));
     }
 
     /**

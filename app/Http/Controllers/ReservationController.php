@@ -24,7 +24,7 @@ class ReservationController extends Controller
 
         $reservations = $this->Reservation->getReservations($user_id);
 
-        return view('reservations.index', compact('reservations', 'user'));
+        return view('reservations.index', compact('reservations', 'user_id'));
     }
 
     /**

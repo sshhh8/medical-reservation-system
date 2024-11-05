@@ -3,6 +3,8 @@
 namespace App\Repositories\Reservation;
 
 use App\Models\Reservation;
+use Illuminate\Support\Facades\Auth;
+
 
 class ReservationRepository
 {
@@ -19,10 +21,6 @@ class ReservationRepository
             'user_id' => Auth::id(),
             ]);
 
-          return $reservation;
-
-    // 値の代入
-        return $Reservation->fill($request->all())->save();
     }
 
 //   // Reservationsテーブルの要素を更新
