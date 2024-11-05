@@ -83,9 +83,14 @@ table {
     width: 75%;
     table-layout: fixed;
     border-collapse: collapse;
+    font-size: 40px;
 }
 
 th, td {
     padding: 8px;
     text-align: center;
+}
+
+.border col-7 {
+    margin: auto;
 }
