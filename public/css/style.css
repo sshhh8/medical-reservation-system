@@ -83,12 +83,16 @@ table {
     width: 75%;
     table-layout: fixed;
     border-collapse: collapse;
-    font-size: 40px;
+    font-size: 30px;
 }
 
 th, td {
     padding: 8px;
     text-align: center;
+}
+
+thead {
+    background: #CEE6C1;
 }
 
 .border col-7 {

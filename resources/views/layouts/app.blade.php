@@ -8,7 +8,7 @@
     <body>
         <div class="sidebar">
             <button type="button" class="btn btn-outline-secondary btn-block" onclick="location.href='{{ route('profile.edit') }}' ">マイページ</button><br>
-            <button type="button" class="btn btn-outline-secondary btn-block" onclick="location.href='{{ route('reservations.index') }}' ">予約</button>
+            <button type="button" class="btn btn-outline-secondary btn-block" onclick="location.href='{{ route('reservations.index') }}' ">予約一覧</button>
         </div>
         <div class="content-wrapper">
         <nav>
