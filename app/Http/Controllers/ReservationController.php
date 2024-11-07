@@ -18,13 +18,30 @@ class ReservationController extends Controller
         $this->Reservation = $reservationRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $user_id = Auth::user()->id;
 
         $reservations = $this->Reservation->getReservations($user_id);
 
-        return view('reservations.index', compact('reservations', 'user_id'));
+        $keyword = $request->input('keyword');
+        $query = Reservation::where('user_id', $user_id)->with('categories');
+
+        // 検索条件が存在する場合のみクエリに条件を追加
+        if ($keyword) {
+            $query->whereHas('categories', function ($q) use ($keyword) {
+                $q->where('name', 'like', '%' . $keyword . '%');
+            });
+        }
+
+        // if ($request->filled('date')) {
+        //     $query->where('date', 'like', '%' . $request->input('date') . '%');
+        // }
+        dd($reservations);
+        $reservations = $query->get();
+
+
+        return view('reservations.index', compact('reservations', 'user_id', 'keyword'));
     }
 
     /**

@@ -12,7 +12,6 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('reservations', ReservationController::class);
 
-
     Route::get('/create', [UserController::class, 'create'])->name('reservations.create');
 
 });

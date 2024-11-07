@@ -4,13 +4,18 @@ namespace App\Repositories\Reservation;
 
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 class ReservationRepository
 {
     public function getReservations($user_id)
     {
         return Reservation::where('user_id', $user_id)->with('users', 'categories')->get();
+    }
+
+    public function getReservationsByKeyword($keyword): LengthAwarePaginator
+    {
+        return Reservation::where('category_id', 'like', "%{$keyword}%")->sortable($sort_query)->orderBy('created_at', 'desc')->paginate(config(reservation.page));
     }
 
     public function createReservation($request)
