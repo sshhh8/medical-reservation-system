@@ -6,83 +6,61 @@ use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\Reservation\ReservationRepository;
+use App\Repositories\ReservationRepository;
+use App\Repositories\CategoryRepository;
+
 
 class ReservationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function __construct(ReservationRepository $reservationRepository)
+    public function __construct(ReservationRepository $reservationRepository,CategoryRepository $categoryRepository)
     {
         $this->Reservation = $reservationRepository;
+        $this->Category = $categoryRepository;
     }
 
     public function index(Request $request)
     {
         $user_id = Auth::user()->id;
+        $categories = $this->Category->getCategoryIdByUser();
+        $category_id = $request->category_id;
 
-        $reservations = $this->Reservation->getReservations($user_id);
-
-        $keyword = $request->input('keyword');
-        $query = Reservation::where('user_id', $user_id)->with('categories');
-
-        // 検索条件が存在する場合のみクエリに条件を追加
-        if ($keyword) {
-            $query->whereHas('categories', function ($q) use ($keyword) {
-                $q->where('name', 'like', '%' . $keyword . '%');
-            });
+        if ($category_id) {
+            $reservations = $this->Reservation->getReservationsByCategoryId($user_id, $category_id);
+        } else {
+            $reservations = $this->Reservation->getReservations($user_id);
         }
 
-        // if ($request->filled('date')) {
-        //     $query->where('date', 'like', '%' . $request->input('date') . '%');
-        // }
-        dd($reservations);
-        $reservations = $query->get();
-
-
-        return view('reservations.index', compact('reservations', 'user_id', 'keyword'));
+        return view('reservations.index', compact('reservations', 'categories', 'category_id'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('reservations.create');
+        $user = Auth::user();
+
+        $categories = $user->categories;
+
+        return view('reservations.create', compact('user', 'categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $this->Reservation->createReservation($request);
 
-        return redirect()->route('reservations.index')->with('flash_message', '予約が完了しました。');
+        return redirect()->route('reservations.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Reservation $reservation)
     {
-        //
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Reservation $reservation)
     {
-        //
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Reservation $reservation)
     {
-        //
+
     }
 }
