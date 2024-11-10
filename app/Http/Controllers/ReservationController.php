@@ -36,7 +36,6 @@ class ReservationController extends Controller
     public function create()
     {
         $user = Auth::user();
-
         $categories = $user->categories;
 
         return view('reservations.create', compact('user', 'categories'));
@@ -46,16 +45,22 @@ class ReservationController extends Controller
     {
         $this->Reservation->createReservation($request);
 
-        return redirect()->route('reservations.index');
+        return to_route('reservations.index');
     }
 
     public function edit(Reservation $reservation)
     {
+        $user = Auth::user();
+        $categories = $user->categories;
 
+        return view('reservations.edit', compact('reservation',  'categories'));
     }
 
     public function update(Request $request, Reservation $reservation)
     {
+        $this->Reservation->updateReservation($request, $reservation);
+
+        return to_route('reservations.index');
 
     }
 
