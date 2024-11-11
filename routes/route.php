@@ -13,5 +13,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('reservations', ReservationController::class, ['except'=>['show']]);
 
+    Route::get('/chat', [ChatbotController::class, 'index'])->name('chatbot.index');;
+    Route::post('/chat', [ChatbotController::class, 'post']);
+
 });
 
