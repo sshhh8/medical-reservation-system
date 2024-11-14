@@ -45,7 +45,7 @@ class ReservationController extends Controller
     {
         $this->Reservation->createReservation($request);
 
-        return to_route('reservations.index');
+        return to_route('chatbot.index');
     }
 
     public function edit(Reservation $reservation)

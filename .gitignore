@@ -20,6 +20,6 @@ yarn-error.log
 /.idea
 /.vscode
 /.zed
-docker/*/data/*
-docker/mysql
-docker/nginx/logs
+/docker/nginx/logs
+/docker/nginx/logs/access.log
+/docker/*
