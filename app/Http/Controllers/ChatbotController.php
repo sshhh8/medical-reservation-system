@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller,
+    Session;
 
 use OpenAI;
 
 class ChatbotController extends Controller
 {
-    public function index(Request $request)
+    public function index(Reservation $reservation)
     {
-        return view('chatbot.index');
+        return view('chatbot.index',compact('reservation'));
     }
 
     /**
@@ -21,36 +24,28 @@ class ChatbotController extends Controller
      */
     public function post(Request $request)
     {
-        // バリデーション
-        $request->validate([
-            'sentence' => 'required',
-        ]);
+        $userMessage = $request->input('message');
 
-        // 画面で入力した質問
-        $sentence = $request->input('sentence');
+        $conversation = Session::get('conversation', []);
+        $conversation[] = $userMessage;
 
-        // .env に設定したAPIキー
-        // .env には OPENAI_API_KEY='' の形式でAPIキーを追加しておきます。
-        $yourApiKey = getenv('OPENAI_API_KEY');
-        $client = OpenAI::client($yourApiKey);
-        // $client = OpenAI::factory()
-        //         ->withApiKey($yourApiKey)
-        //         ->withOrganization('')
-        //         ->withHttpClient($client = new \GuzzleHttp\Client([])) // default: HTTP client found using PSR-18 HTTP Client Discovery
-        //         ->make();
-
+        $apiKey = getenv('OPENAI_API_KEY');
+        $client = OpenAI::client($apiKey);
+        $summary = "";
         $response = $client->chat()->create([
             'model' => 'gpt-3.5-turbo',
             'max_tokens' => 300,
             'messages' => [
-                ['role' => 'system', 'content' => '100文字程度で返答して'],
-                ['role' => 'user', 'content' => $sentence],
+                ['role' => 'system', 'content' => 'あなたは医者です。問診する患者が回答するので、2問質問してください。まとまり終わったら、問診票として表形式で要約して$summaryに要約した内容を入れてください'],
+                ['role' => 'user', 'content' => $userMessage],
             ],
         ]);
+        $conversation[] = $response['choices'][0]['message']['content'];
 
-        $response_text = $response['choices'][0]['message']['content'];
+        Session::put('conversation', $conversation);
 
-        return view('chatbot.index', compact('sentence', 'response_text'));
+        return response()->json($response['choices'][0]['message']['content']);
     }
-
 }
+
+
