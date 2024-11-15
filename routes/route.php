@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuestionnaireController;
+use App\Http\Controllers\CalendarController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
@@ -15,6 +16,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/questionnaire/{reservation}', [QuestionnaireController::class, 'index'])->name('questionnaire.index');
     Route::post('/questionnaire/post', [QuestionnaireController::class, 'post'])->name('questionnaire.post');
+
+    Route::get('/events', [CalendarController::class, 'getReservations']);
 
 });
 
