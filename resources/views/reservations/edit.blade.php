@@ -38,5 +38,8 @@
                         </div>
                 </form>
             </div>
+        <br>
+            <button type="button" class="btn btn-outline-secondary btn-block" onclick="location.href='{{ route('questionnaire.index', $reservation) }}' ">問診票</button>
+
     </div>
 @endsection

@@ -35,4 +35,21 @@ class ReservationRepository
         $reservation->save();
         return $reservation;
     }
+
+    public function getReservationArray($reservations)
+    {
+        foreach ($reservations as $reservation) {
+            $category_name = $reservation->categories->name;
+            $reservationArray[] = [
+                'title' => $category_name,
+                'start' => $reservation['date'],
+                'url'   => "reservations/{$reservation['id']}/edit",
+                'color' => '#97C5B0',
+            ];
+        }
+        return $reservationArray;
+
+    }
+
+
 }

@@ -25,7 +25,7 @@
                     </div>
                     <div class="form-group">
                         <label>日付：</label>
-                        <input type="date" id="date" name="date" value="{{ old('date') }}" required>
+                        <input type="datetime" id="date" name="date" value="{{ old('date') }}" required>
                     </div>
                     <div class="row center-block text-center">
                         <div class="col-5">
