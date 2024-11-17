@@ -3,6 +3,10 @@ body {
     margin: 0;
     font-family: PolySans;
     text-align: center;
+    font-family: "M PLUS 1p", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
 }
 
 nav {
@@ -17,7 +21,6 @@ nav {
     padding: 20px;
     flex-grow: 1;
     padding: 20px;
-    background-color: #f4f4f4;
     box-sizing: border-box;
 }
 
@@ -29,6 +32,13 @@ nav {
     font-size: 20px;
 }
 
+.content-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 .content-wrapper {
     display: flex;
     flex-direction: column;
@@ -36,8 +46,9 @@ nav {
 }
 
 .btn {
+    width: 150px;
     background: #CEE6C1;
-    color: #fff;
+    color: #000000;
     padding: 10px;
     outline: 0;
     border: 0;
@@ -54,48 +65,8 @@ footer {
     width: 100%;
 }
 
-.sidebar{
-    width: 250px; /* サイドバーの幅 */
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    height: 100vh; /* 画面の高さに合わせる */
-    box-sizing: border-box;
-}
-
-.side_btn {
-    display: block; /* ボタンをブロック要素にして改行 */
-    margin-bottom: 10px;
-    background: #CEE6C1;
-    color: #fff;
-    padding: 10px;
-    outline: 0;
-    border: 0;
-    font-size: 25px;
-    border-radius: 10px;
-}
-
-table {
-    display: table;
-    margin: auto;
-    width: 75%;
-    table-layout: fixed;
-    border-collapse: collapse;
-    font-size: 30px;
-}
-
-th, td {
-    padding: 8px;
-    text-align: center;
-}
-
-thead {
-    background: #CEE6C1;
-}
-
-.border col-7 {
+.create-reservation {
+    width: 600px;
     margin: auto;
 }
 
@@ -132,7 +103,7 @@ thead {
 .chatbot-header {
     padding: 10px;
     background: #CEE6C1;
-    color: white;
+    color: #000000;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     display: flex;
@@ -157,8 +128,8 @@ thead {
 .chatbot-input button {
     padding: 5px 15px;
     border: none;
-    background-color: #007bff;
-    color: white;
+    background-color: #CEE6C1;
+    color: #000000;
     border-radius: 5px;
     cursor: pointer;
     width: 80px;

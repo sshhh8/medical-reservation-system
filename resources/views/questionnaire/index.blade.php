@@ -8,7 +8,7 @@
         </div>
         <div class="chatbot-messages" id="messages"></div>
         <div class="chatbot-input">
-            <input type="text" id="userInput" placeholder="質問...">
+            <input type="text" id="userInput" placeholder="どのような症状がありますか？">
             <button id="sendMessage">送信</button>
         </div>
     </div>
