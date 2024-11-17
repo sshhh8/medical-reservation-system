@@ -20,7 +20,7 @@ class ReservationRepository
 
     public function createReservation($request)
     {
-        $reservation = Reservation::create([
+        return $reservation = Reservation::create([
             'category_id' => $request->input('category_id'),
             'date' => $request->input('date'),
             'user_id' => Auth::id(),

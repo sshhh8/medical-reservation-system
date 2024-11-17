@@ -29,4 +29,8 @@ class Reservation extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+    public function questionnaires()
+    {
+        return $this->belongsTo(Questionnaire::class, );
+    }
 }

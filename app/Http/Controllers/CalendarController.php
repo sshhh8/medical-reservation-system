@@ -16,7 +16,6 @@ class CalendarController extends Controller
 
     public function getReservations(Request $request)
     {
-        $reservationArray = [];
         $user_id = Auth::user()->id;
         $reservations = $this->Reservation->getReservations($user_id);
         $reservationArray = $this->Reservation->getReservationArray($reservations);

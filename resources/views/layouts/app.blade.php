@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <head>
         <title>Medical Reservation</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Josefin+Sans&family=M+PLUS+1p&display=swap" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
             <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
             <script>
@@ -21,15 +24,23 @@
             </script>
     </head>
     <body>
-        <div class="sidebar">
-            <button type="button" class="btn btn-outline-secondary btn-block" onclick="location.href='{{ route('profile.edit') }}' ">マイページ</button><br>
-            <button type="button" class="btn btn-outline-secondary btn-block" onclick="location.href='{{ route('reservations.index') }}' ">予約一覧</button>
-        </div>
         <div class="content-wrapper">
-        <nav>
-            <h3>診療予約システム</h3>
-            <hr>
-        </nav>
+            <nav class="navbar navbar-expand-lg bg-body-bs-success-bg-subtle" style="background-color: #CEE6C1;">
+                <div class="container-fluid">
+                    <img src="{{asset('img/logo.svg')}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    <a class="navbar-brand" href='{{ route('reservations.index') }}'>診療予約システム</a>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href='{{ route('reservations.index') }}' >予約一覧</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href='{{ route('profile.edit') }}' >マイページ</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         <main class="main-content">
             @yield('content')
         </main>
@@ -39,7 +50,7 @@
             © 2024 medical.com
         </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     </body>
 </html>
