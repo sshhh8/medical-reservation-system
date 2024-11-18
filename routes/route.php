@@ -15,7 +15,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('reservations', ReservationController::class, ['except'=>['show']]);
 
     Route::get('/questionnaire/{reservation}', [QuestionnaireController::class, 'index'])->name('questionnaire.index');
-    Route::post('/questionnaire/post', [QuestionnaireController::class, 'post'])->name('questionnaire.post');
+    Route::post('/questionnaire/post/{reservationId}', [QuestionnaireController::class, 'post'])->name('questionnaire.post');
 
     Route::get('/events', [CalendarController::class, 'getReservations']);
 

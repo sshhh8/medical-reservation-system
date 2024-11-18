@@ -48,7 +48,6 @@ class ReservationRepository
             ];
         }
         return $reservationArray;
-
     }
 
 

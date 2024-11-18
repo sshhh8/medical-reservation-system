@@ -26,8 +26,8 @@
                     <label for="inputdate" class="form-label">日付</label>
                     <input type="datetime-local" class="form-control" id="date" name="date" value="{{ $reservation->date }}" required>
                 </div>
-                <button type="submit" class="btn btn-outline-secondary btn-block">更新</button>
                 <button type="button" class="btn btn-outline-secondary btn-block" onclick="location.href='{{ route('questionnaire.index', $reservation) }}' ">問診票</button>
+                <button type="submit" class="btn btn-outline-secondary btn-block">更新</button>
             </form>
             <br>
         </div>

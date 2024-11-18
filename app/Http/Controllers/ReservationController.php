@@ -63,9 +63,4 @@ class ReservationController extends Controller
         return to_route('reservations.index');
 
     }
-
-    public function destroy(Reservation $reservation)
-    {
-
-    }
 }

@@ -21,13 +21,23 @@
         });
 
         $(document).ready(function() {
-            $('#sendMessage').click(function() {
+            function sendMessage() {
                 let message = $('#userInput').val();
                 $('#messages').append('<div>あなた: ' + message + '</div>');
-                $.post( "{{ route('questionnaire.post') }}" , { message: message }, function(data) {
+                $.post( "{{ route('questionnaire.post', $reservation->id) }}" , { message: message }, function(data) {
                     $('#messages').append("<div>AIdoctor:" + data + "</div>");
                 });
                 $('#userInput').val('');
+            };
+
+            $('#sendMessage').click(function() {
+                sendMessage();
+            });
+
+            $('#userInput').keypress(function(e) {
+                if(e.keyCode === 13) {
+                sendMessage();
+                }
             });
         });
     </script>
