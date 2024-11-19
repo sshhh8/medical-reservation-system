@@ -62,6 +62,15 @@ class ReservationCrudController extends CrudController
             ->attribute('name')
             ->model("App\Models\User");
         CRUD::column('date')->label('日付');
+        CRUD::column('created_at')->label('作成日時')->format('YYYY-MM-DD HH:mm:ss');
+        CRUD::column('updated_at')->label('更新日時')->format('YYYY-MM-DD HH:mm:ss');
+        CRUD::column('questionnaires.content')
+            ->label('問診票')
+            ->type('textarea')
+            ->entity('questionnaires')
+            ->attribute('content')
+            ->model("App\Models\Questionnaire");
+
 
 
         /**
@@ -80,12 +89,11 @@ class ReservationCrudController extends CrudController
     {
         $this->data['breadcrumbs'] = [
             'ダッシュボード' => backpack_url('dashboard'),
-            '予約管理' => backpack_url('admin'),
+            '予約管理' => backpack_url('reservation'),
             '新規登録' => false,
         ];
         $adminCategoryId = backpack_user()->category_id;
 
-        // カテゴリー選択フィールド
         CRUD::addField([
             'label'     => '診療科',
             'type'      => 'select',
@@ -94,12 +102,10 @@ class ReservationCrudController extends CrudController
             'attribute' => 'name',
             'model'     => "App\Models\Category",
             'options'   => (function ($query) use ($adminCategoryId) {
-                // Adminの所持するカテゴリーのみを表示
                 return $query->where('id', $adminCategoryId)->get();
             }),
         ]);
 
-        // ユーザー選択フィールド
         CRUD::addField([
             'label'     => '患者氏名',
             'type'      => 'select',
@@ -133,5 +139,16 @@ class ReservationCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function autoSetupShowOperation()
+    {
+        $this->data['breadcrumbs'] = [
+            'ダッシュボード' => backpack_url('dashboard'),
+            '予約管理' => backpack_url('reservation'),
+            '詳細' => false,
+        ];
+
+        $this->setupListOperation();
     }
 }
