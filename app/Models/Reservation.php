@@ -31,6 +31,6 @@ class Reservation extends Model
     }
     public function questionnaires()
     {
-        return $this->belongsTo(Questionnaire::class, );
+        return $this->hasOne(Questionnaire::class, );
     }
 }
