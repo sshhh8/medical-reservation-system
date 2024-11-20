@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call(AdminsTableSeeder::class);
 
+        $this->call(ReservationSeeder::class);
+
+
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
