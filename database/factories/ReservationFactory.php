@@ -24,8 +24,8 @@ class ReservationFactory extends Factory
                 return User::inRandomOrder()->first()->id;
             },
             'category_id' => function (array $attributes) {
-                $user = User::find($attributes['user_id']); // ユーザーを取得
-                return $user->categories()->pluck('id')->random(); // リレーションからカテゴリIDをランダム取得
+                $user = User::find($attributes['user_id']);
+                return $user->categories()->pluck('id')->random();
             },
             'date' => $this->faker->dateTimeBetween($startDate = 'now', $endDate = '+1 week'),
         ];
