@@ -15,10 +15,10 @@ class adminsTableSeeder extends Seeder
     {
         Admin::create([
             'id' => 1,
-            'name' => 'hanako',
-            'email' => 'hanako@hana.hana',
+            'name' => '鈴木花子',
+            'email' => 'hanako@example.com',
             'category_id' => 1,
-            'password' => 'hanakohana',
+            'password' => 'password',
         ]);
     }
 }
