@@ -12,16 +12,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Josefin+Sans&family=M+PLUS+1p&display=swap" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-            <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    var calendarEl = document.getElementById('calendar');
-                    var calendar = new FullCalendar.Calendar(calendarEl, {
-                        initialView: 'dayGridMonth'
-                    });
-                    calendar.render();
-                });
-            </script>
+
+        @yield('head-scripts')
     </head>
     <body>
         <div class="content-wrapper">
@@ -44,7 +36,7 @@
         </div>
         <footer>
             <hr />
-            © 2024 medical.com
+            © hinako
         </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

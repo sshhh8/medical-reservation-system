@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('content')<html>
+@section('content')
     <h1>問診票</h1>
     <p>{{ $reservation->date_formatted }},{{ $reservation->categories->name }}の予定</p>
     <div class="chatbot-window">

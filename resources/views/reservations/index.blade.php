@@ -1,4 +1,16 @@
 @extends('layouts.app')
+@section('head-scripts')
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var calendarEl = document.getElementById('calendar');
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth'
+                });
+                calendar.render();
+            });
+        </script>
+@endsection
 @section('content')
     <div class="content-title">
         <h1>{{ Auth::user()->name }}様の今後の予定</h1>

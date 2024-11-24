@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class questionnaireRepository
 {
-    public function createQuestionnaire($responseData, $reservationId)
+    public function createQuestionnaire($content, $reservationId)
     {
         Questionnaire::create([
             'reservation_id' => $reservationId,
-            'content' => $responseData,
+            'content' => $content,
             ]);
     }
 }

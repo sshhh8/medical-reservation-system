@@ -1,9 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    <div>
-        <br>
+    <p>
         <h1>編集</h1>
-        <br>
         <div class="create-reservation">
             <br>
             <form action="{{ route('reservations.update', $reservation) }}" method="POST">
@@ -31,5 +29,5 @@
             </form>
             <br>
         </div>
-    </div>
+    </p>
 @endsection

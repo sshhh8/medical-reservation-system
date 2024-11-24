@@ -20,7 +20,7 @@ class ReservationRepository
 
     public function createReservation($request)
     {
-        return $reservation = Reservation::create([
+        return Reservation::create([
             'category_id' => $request->input('category_id'),
             'date' => $request->input('date'),
             'user_id' => Auth::id(),
@@ -33,7 +33,6 @@ class ReservationRepository
         $reservation->category_id = $request->input('category_id');
         $reservation->date = $request->input('date');
         $reservation->save();
-        return $reservation;
     }
 
     public function getReservationArray($reservations)

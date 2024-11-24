@@ -28,10 +28,12 @@ class Reservation extends Model
     {
         return $this->belongsTo(Admin::class);
     }
+
     public function categories()
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
     public function questionnaires()
     {
         return $this->hasOne(Questionnaire::class, );

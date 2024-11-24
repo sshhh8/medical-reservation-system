@@ -46,16 +46,16 @@ class QuestionnaireController extends Controller
                 ['role' => 'user', 'content' => $userMessage],
             ],
         ]);
-        $responseData = $response['choices'][0]['message']['content'];
-        if (str_contains($responseData, '要約')) {
-            $this->Questionnaire->createQuestionnaire($responseData, $reservationId);
+        $content = $response['choices'][0]['message']['content'];
+        if (str_contains($content, '要約')) {
+            $this->Questionnaire->createQuestionnaire($content, $reservationId);
 
             return response()->json("要約を作成しました。");
         }
-        $conversation[] = $responseData;
+        $conversation[] = $content;
 
         Session::put('conversation', $conversation);
 
-        return response()->json($responseData);
+        return response()->json($content);
     }
 }
