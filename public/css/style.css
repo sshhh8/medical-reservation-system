@@ -32,7 +32,7 @@ nav {
     font-size: 20px;
 }
 
-.content-title{
+.content-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -65,7 +65,7 @@ footer {
     width: 100%;
 }
 
-.create-reservation {
+.create-reservation, .update-profile {
     width: 600px;
     margin: auto;
 }
