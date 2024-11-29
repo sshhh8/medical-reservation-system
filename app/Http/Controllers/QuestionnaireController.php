@@ -50,7 +50,7 @@ class QuestionnaireController extends Controller
         if (str_contains($content, '要約')) {
             $this->Questionnaire->createQuestionnaire($content, $reservationId);
 
-            return response()->json("要約を作成しました。");
+            return response()->json("要約を作成しました。前の画面に戻ってください。");
         }
         $conversation[] = $content;
 

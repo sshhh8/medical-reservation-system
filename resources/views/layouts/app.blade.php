@@ -26,6 +26,9 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href='{{ route('reservations.index') }}' >カレンダー</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href='{{ route('profile.edit') }}' >マイページ</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
