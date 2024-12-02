@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\ReservationRepository;
 use App\Repositories\CategoryRepository;
+use App\Http\Requests\ReservationRequest;
 
 
 class ReservationController extends Controller
@@ -41,7 +42,7 @@ class ReservationController extends Controller
         return view('reservations.create', compact('user', 'categories'));
     }
 
-    public function store(Request $request)
+    public function store(ReservationRequest $request)
     {
         $reservation = $this->Reservation->createReservation($request);
 
@@ -56,7 +57,7 @@ class ReservationController extends Controller
         return view('reservations.edit', compact('reservation',  'categories'));
     }
 
-    public function update(Request $request, Reservation $reservation)
+    public function update(ReservationRequest $request, Reservation $reservation)
     {
         $this->Reservation->updateReservation($request, $reservation);
 
