@@ -25,7 +25,7 @@ class ReservationRequest extends FormRequest
         return [
             'category_id' => 'required|integer|exists:categories,id',
             'user_id' => 'required|integer|exists:users,id',
-            'date' => 'required|after:now',
+            'date' => 'required|date|after:now',
         ];
     }
 }

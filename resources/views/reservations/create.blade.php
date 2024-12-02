@@ -5,6 +5,15 @@
         <h1>新規予約</h1>
         <br>
             <div class="create-reservation">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <br>
                 <form action="{{ route('reservations.store') }}" method="POST">
                     @csrf
