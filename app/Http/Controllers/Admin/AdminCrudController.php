@@ -56,7 +56,12 @@ class AdminCrudController extends CrudController
             ->type('select')
             ->entity('categories')
             ->attribute('name')
-            ->model("App\Models\Category");
+            ->model("App\Models\Category")
+            ->searchLogic(function ($query, $column, $searchTerm) {
+                $query->orWhereHas('categories', function ($query) use ($searchTerm) {
+                    $query->where('name', 'like', '%'.$searchTerm.'%');
+                });
+            });
         CRUD::column('email')->label('email');
 
         /**

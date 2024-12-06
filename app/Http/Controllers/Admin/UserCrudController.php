@@ -50,13 +50,21 @@ class UserCrudController extends CrudController
         ];
 
         CRUD::column('id')->label('患者番号');
-        CRUD::column('name')->label('患者氏名');
+        CRUD::column('name')->label('患者氏名')
+            ->searchLogic(function ($query, $column, $searchTerm) {
+                $query->orWhere('name', 'like', '%'.$searchTerm.'%');
+            });
         CRUD::column('categories')
             ->label('診療科')
             ->type('select_multiple')
             ->entity('categories')
             ->attribute('name')
-            ->model("App\Models\Category");
+            ->model("App\Models\Category")
+            ->searchLogic(function ($query, $column, $searchTerm) {
+                $query->orWhereHas('categories', function ($query) use ($searchTerm) {
+                    $query->where('name', 'like', '%'.$searchTerm.'%');
+                });
+            });
         CRUD::column('email')->label('email');
         CRUD::column('postal_code')->label('郵便番号');
         CRUD::column('address')->label('住所');
