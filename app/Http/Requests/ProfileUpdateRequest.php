@@ -26,7 +26,7 @@ class ProfileUpdateRequest extends FormRequest
             'postal_code' => 'nullable|string|max:10',
             'address' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:20',
-            'password' => 'nullable|string|min:8|confirmed',
+            'password' => 'string|min:8|confirmed',
         ];
     }
 }

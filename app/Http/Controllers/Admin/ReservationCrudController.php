@@ -54,13 +54,23 @@ class ReservationCrudController extends CrudController
             ->type('select_grouped')
             ->entity('categories')
             ->attribute('name')
-            ->model("App\Models\Category");
+            ->model("App\Models\Category")
+            ->searchLogic(function ($query, $column, $searchTerm) {
+                $query->orWhereHas('categories', function ($query) use ($searchTerm) {
+                    $query->where('name', 'like', '%'.$searchTerm.'%');
+                });
+            });
         CRUD::column('user_id')
             ->label('患者氏名')
             ->type('select_grouped')
             ->entity('users')
             ->attribute('name')
-            ->model("App\Models\User");
+            ->model("App\Models\User")
+            ->searchLogic(function ($query, $column, $searchTerm) {
+                $query->orWhereHas('users', function ($query) use ($searchTerm) {
+                    $query->where('name', 'like', '%'.$searchTerm.'%');
+                });
+            });
         CRUD::column('date')->label('日付');
         CRUD::column('created_at')->label('作成日時')->format('YYYY-MM-DD HH:mm:ss');
         CRUD::column('updated_at')->label('更新日時')->format('YYYY-MM-DD HH:mm:ss');
