@@ -41,7 +41,7 @@ class QuestionnaireController extends Controller
             'messages' => [
                 [
                     'role' => 'system',
-                    'content' => '簡単な問診票を作成します。患者が回答するので、症状が理解できたら、最後に「要約:」で始まる文章でまとめてください。'
+                    'content' => '簡単な問診票を作成します。患者が回答するので、症状をまとめてください。最後に「要約:」で始まる文章に書き出してください。'
                 ],
                 ['role' => 'user', 'content' => $userMessage],
             ],
