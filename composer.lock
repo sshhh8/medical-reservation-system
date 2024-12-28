@@ -176,16 +176,16 @@
         },
         {
             "name": "backpack/theme-tabler",
-            "version": "1.2.15",
+            "version": "1.2.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/theme-tabler.git",
-                "reference": "f1921342e27ec3da3290eb19b0ab0302b4bf4905"
+                "reference": "d6bd4309ea77b0a8680f41e7f50e64b0ee032c68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/theme-tabler/zipball/f1921342e27ec3da3290eb19b0ab0302b4bf4905",
-                "reference": "f1921342e27ec3da3290eb19b0ab0302b4bf4905",
+                "url": "https://api.github.com/repos/Laravel-Backpack/theme-tabler/zipball/d6bd4309ea77b0a8680f41e7f50e64b0ee032c68",
+                "reference": "d6bd4309ea77b0a8680f41e7f50e64b0ee032c68",
                 "shasum": ""
             },
             "require": {
@@ -197,13 +197,13 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-main": "1.0.x-dev"
-                },
                 "laravel": {
                     "providers": [
                         "Backpack\\ThemeTabler\\AddonServiceProvider"
                     ]
+                },
+                "branch-alias": {
+                    "dev-main": "1.0.x-dev"
                 }
             },
             "autoload": {
@@ -243,9 +243,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Laravel-Backpack/theme-tabler/issues",
-                "source": "https://github.com/Laravel-Backpack/theme-tabler/tree/1.2.15"
+                "source": "https://github.com/Laravel-Backpack/theme-tabler/tree/1.2.17"
             },
-            "time": "2024-10-28T10:58:44+00:00"
+            "time": "2024-12-26T10:41:55+00:00"
         },
         {
             "name": "brick/math",

@@ -54,10 +54,10 @@ return [
          * The available color modes.
          */
         'colorModes' => [
-            'system' => 'la-desktop',
-            'light' => 'la-sun',
-            'dark' => 'la-moon',
-        ],
+        'system' => 'la-leaf', // システムモードのアイコンを変更
+        'light' => 'la-tree', // ライトモードのアイコンを変更
+        'dark' => 'la-seedling', // ダークモードのアイコンを変更
+    ],
 
         /**
          * The color mode used by default.
