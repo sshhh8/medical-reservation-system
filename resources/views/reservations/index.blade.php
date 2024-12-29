@@ -22,14 +22,18 @@
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'timeGridWeek',
+                timeZone: "Asia/Tokyo",
                 locale: 'ja',
                 height: 'auto',
                 firstDay: 1,
                 headerToolbar: {
                     left: "dayGridMonth,timeGridWeek,listMonth",
                     center: "title",
-                    right: "today prev,next"
+                    right: "today prev,next",
                 },
+                dayCellContent: function(arg){
+		            return arg.date.getDate();
+	            },
                 buttonText: {
                     today: '今月',
                     month: '月',
