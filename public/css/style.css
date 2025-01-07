@@ -134,3 +134,9 @@ footer {
     cursor: pointer;
     width: 80px;
 }
+
+@media screen and (min-width:992px) {
+    .nav-sp {
+    display: none;
+}
+}
