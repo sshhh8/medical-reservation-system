@@ -63,7 +63,7 @@ return [
     'home_link' => '',
 
     // Menu logo. You can replace this with an <img> tag if you have a logo.
-    'project_logo' => '<b>Medical reservation system</b>',
+    'project_logo' => '<b>診療予約システム</b>',
 
     // Show / hide breadcrumbs on admin panel pages.
     'breadcrumbs' => true,

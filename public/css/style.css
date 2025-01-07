@@ -6,7 +6,6 @@ body {
     font-family: "M PLUS 1p", sans-serif;
     font-weight: 400;
     font-style: normal;
-
 }
 
 nav {
@@ -133,4 +132,32 @@ footer {
     border-radius: 5px;
     cursor: pointer;
     width: 80px;
+}
+
+@media screen and (min-width:992px) {
+    .nav-sp {
+    display: none;
+}
+}
+
+@media screen and (max-width: 767px) {
+    .main-content h1 {
+        font-size: 20px;
+    }
+
+    .btn {
+        width: 80px;
+        background: #CEE6C1;
+        color: #000000;
+        padding: 10px;
+        outline: 0;
+        border: 0;
+        font-size: 12px;
+        border-radius: 10px;
+    }
+
+    .create-reservation, .update-profile {
+        width: auto;
+        margin: auto;
+    }
 }
