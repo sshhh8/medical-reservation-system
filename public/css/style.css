@@ -177,4 +177,13 @@ footer {
         overflow-y: scroll;
         height: 380px;
     }
+
+    .fc .fc-toolbar-title {
+        font-size: 1.2em;
+    }
+
+    .fc .fc-button {
+        font-size: 0.8em;
+        padding: 0.5em;
+    }
 }
