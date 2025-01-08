@@ -145,6 +145,10 @@ footer {
         font-size: 20px;
     }
 
+    .main-content p {
+        font-size: 16px;
+    }
+
     .btn {
         width: 80px;
         background: #CEE6C1;
@@ -159,5 +163,18 @@ footer {
     .create-reservation, .update-profile {
         width: auto;
         margin: auto;
+    }
+
+    .chatbot-window {
+        margin: auto;
+        right: 2%;
+        width: 100%;
+        height: 500px;
+    }
+
+    .chatbot-messages {
+        padding: 10px;
+        overflow-y: scroll;
+        height: 380px;
     }
 }
