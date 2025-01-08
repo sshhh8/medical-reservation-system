@@ -20,8 +20,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
+            var initialView = window.innerWidth < 768 ? 'listMonth' : 'timeGridWeek';
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'timeGridWeek',
+                initialView: initialView,
                 timeZone: "Asia/Tokyo",
                 locale: 'ja',
                 height: 'auto',
@@ -48,6 +49,13 @@
                 ],
                 eventSourceFailure () {
                     console.error('エラーが発生しました。');
+                },
+                windowResize: function(view) {
+                if (window.innerWidth < 768) {
+                    calendar.changeView('listMonth');
+                } else {
+                    calendar.changeView('timeGridWeek');
+                }
                 },
                 });
                     calendar.render();
