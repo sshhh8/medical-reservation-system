@@ -19,7 +19,7 @@
         <div class="content-wrapper">
             <nav class="navbar navbar-expand-lg bg-body-bs-success-bg-subtle" style="background-color: #CEE6C1;">
                 <div class="container-fluid">
-                    <img src="{{asset('img/logo.svg')}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    <a href='{{ route('reservations.index') }}'><img src="{{asset('img/logo.svg')}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                     <a class="navbar-brand" href='{{ route('reservations.index') }}'>診療予約システム</a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto">
